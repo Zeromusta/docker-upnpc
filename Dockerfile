@@ -1,10 +1,8 @@
 FROM alpine:3.7
 
-RUN apk add --no-cache miniupnpc bash
+LABEL maintainer="Alexandre Buisine <alexandrejabuisine@gmail.com>" version="1.0"
 
-COPY resources/upnpc.sh /usr/local/sbin/
-RUN chmod +x /usr/local/sbin/upnpc.sh
+RUN apk add --no-cache miniupnpc
 
-ENV NAT_PORTS="500/udp 4500/udp"
-
-CMD /usr/local/sbin/upnpc.sh
+ENTRYPOINT ["/usr/bin/upnpc"]
+CMD ["-s"]
